@@ -1,0 +1,1296 @@
+1.   How to create database?
+     mysql> create database ustglobal; //to create database
+     Query OK, 1 row affected (0.07 sec)
+2.  How to use database?
+    mysql> use ustglobal;
+    Database changed
+      mysql> use ustglobal;
+    Database changed
+3. Query  to check whether data is present in data bases are there ?
+     mysql> show tables; 
+      Empty set (0.04 sec)
+4.   how to create table in database?
+ mysql> create table student(id int,name varchar(120),emailId varchar(150));
+     Query OK, 0 rows affected (0.54 sec)
+5. how to know how table is created in database?
+   the query is  show tables;
+6.  which query use to describe the table?
+     mysql> desc student;   //desc tablename;
+
+
+7.  query to delete the table?
+   mysql> drop table student;  //drop table tablename; everything data is deleted
+Query OK, 0 rows affected (0.25 sec)
+8.  to drop the database? //delete structure + data
+     drop database ustglobal;// drop database databasename;
+
+9.to show the database?
+  show database;
+10. how to add column to the table?
+     alter table employee add column emailid varchar(150);// alter  table tablename add column columnname;
+11. to check table whether it is added or not?
+       mysql> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(120) | YES  |     | NULL    |       |
+| emailid | varchar(150) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+ 12. without add word?
+   mysql> alter table employee add mobileno int;  //alter table tablename add column name
+13. How to drop the column from the table?
+     mysql> alter table employee drop emailid;  //alter table tablename drop columnname
+Query OK, 0 rows affected (0.44 sec)
+14. how to rename the column name?
+     mysql> alter table employee change name username varchar(120); //alter table tablename change previousname changedname and type;
+
+  syntax is:alter table table_name change previousname changename
+15. how to rename a table?
+    mysql> rename table employee to student;  //rename table previousname to newname
+16. to check that table?
+    show tables;
+17.how to rename the database?
+  no it is not possible DATABASE can't be renamed in highversion
+18.how to insert data to the table?
+     insert into student (empid,username,mobileno) values(1,'laxmi',88);  //insert into table(column1,column2,.....) values(value1,...);
+if we know the order we can write
+   insert into student values(2,'shreedevi',999);
+19. to check whether the data is inserted or not?
+   mysql> select * from student;  ///syntax:select * from tablename;
+20. how to insert multiple valuse at a time?
+mysql> insert into student values(3,'shreedevi',999),(4,'shreeram',8888),(5,'suman',466);
+21.if we want to insert only to 2 columns not all?
+mysql> insert into student(empid,mobileno) values(6,1616);
+22.How to update the data in the column?
+      mysql> update student set mobileno=12820000;
+ syntax: update tablename set columnname=value;
+23. how  to delete the record?
+     mysql> delete from student;
+Syntax: delete from tabl_name;
+24.  how to isert data at a time?
+ insert into student  values(1,'laxmi',12512313),(2,'deepa',23652),(2,'jaya',23652),(2,'shreedevi',23652),(2,'suma',236);
+syntax: insert into tablename values(bknk,jvjh,hch),(vhh,hvh,chvb).......
+25.to delete all and all records in table?
+  truncate table student;
+syntax:truncate table tablename; // Truncate remains the structure of the table
+26.How to get data from particular column?
+mysql> select empid,username from student;
+Syntax: select columnname from tablename;
+  +-------+-----------+
+| empid | username  |
++-------+-----------+
+| 1     | laxmi     |
+| 2     | deepa     |
+| 2     | jaya      |
+| 2     | shreedevi |
+| 2     | suma      |
++-------+-----------+
+27. How to fetch id name from the table whose name is laxmi from table student is?
+mysql> select * from student where empid=1;
++-------+----------+----------+
+| empid | username | mobileno |
++-------+----------+----------+
+| 1     | laxmi    | 12512313 |
++-------+----------+----------+
+
+or
+mysql> select empid,username from student where empid=2;
+28.How to update a paricular data in table?
+   mysql> update student set mobileno=166635646 where empid=4;
+Query OK, 1 row affected (0.09 sec)
+29.How to delete particular data from table?
+ delete from student where empid=3;
+Syntax:delete from tablename where condtion;
+ in condition :column name=value
+note:where clause doesnt support insert
+30. how to create table with constrints and giving primary key?
+mysql> create table mine(id int,name varchar(120) not null,email varchar(120),primary key(id));
+31.what is used to give temprary name?
+using alias [it is not affect permenently it is temprary name]
+32.to change the column name temprory and also we get data of id and name?
+mysql> select id, name, Bloodgroup as bg from employee_info;
++----+-------------+-------+
+33.write a query to display emplyeename,salary,designation, and his anual salary?
+mysql> select name,salary*12 anualsalary ,designation from employee_info;
++-------------+-------------+-------------------+
+no need write the 'as' we can also write without as by giving name after salary
+34.Write a query to give aliasname for all thge columns present in employee_info?
+> select name nm,emailid em,designation de,Mobileno Mob,age ag,DOB db,DOJ dj,salary sal,Deptid Did,Bloodgroup bg from employee_info;
+35.How to get unique results from data?
+select distinct columnname from tablename;
+36.write a query to disply unique diptno from table?
+mysql> select distinct Deptid from employee_info;
++--------+
+| Deptid |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
+|     50 |
+|     60 |
++--------+
+unique values we get
+37.to get 2 distinct values from table?
+mysql> select distinct Deptid,designation from employee_info;
++--------+-------------------+
+| Deptid | designation       |
++--------+-------------------+
+|     10 | HR                |
+|     20 | Clerk             |
+|     30 | SoftwareDeveloper |
+|     40 | salesman          |
+|     50 | Analyst           |
+|     60 | tester            |
++--------+-------------------+
+6 rows in set (0.00 sec)
+it check the both column if any values are same then it give as same name
+38.write a query to dipt id,designation,and age from table?
+
+mysql> select distinct Deptid,age,designation from employee_info;
++--------+------+-------------------+
+| Deptid | age  | designation       |
++--------+------+-------------------+
+|     10 |   22 | HR                |
+|     20 |   23 | Clerk             |
+|     30 |   22 | SoftwareDeveloper |
+|     10 |   23 | HR                |
+|     40 |   23 | salesman          |
+|     30 |   24 | softwareDeveloper |
+|     10 |   25 | HR                |
+|     50 |   24 | Analyst           |
+|     20 |   21 | Clerk             |
+|     10 |   24 | HR                |
+|     40 |   24 | Salesman          |
+|     60 |   23 | tester            |
++--------+------+-------------------+
+12 rows in set (0.00 sec)
+39.write a query to display name,salary,and salaryincrement by 5000?
+select name, salary,salary*12 anualsalary from employee_info;
+mysql> select name, salary,salary-5000 decrementsalary from employee_info;
+
+ select name,salary,(salary*12)/365 as perdaysalary from employee_info;
+40.modulus operator?
+ select 10%3;
+1 true;
+41.not equal <>
+mysql> select 5<>6;
++------+
+| 5<>6 |
++------+
+|    1 | true bcz 5 and 6 are not equal
++------+
+1 row in set (0.04 sec)
+
+mysql> select 5<>5;
++------+
+| 5<>5 |  
++------+
+|    0 |    //0 means false bcz 5!=5 is false
++------+
+1 ro
+w in set (0.00 sec)
+42. To dispaly all the records excluding deptid=10?
+select * from employee_info where Deptid!=10;
+               	or
+select * from employee_info where Deptid<>10;
+43.Write a query to display,name,designation,mobile no whose salary >15000?
+ select name,designation,Mobileno,age,salary from employee_info where salary>15000;
+44.Write a query to display,name,designation,mobile no whose salary <20000?
+> select name,designation,Mobileno,age,salary from employee_info where salary<20000;
+45.Write a query to display,name,designation,mobile no whose salary <=25000?
+select name,designation,Mobileno,age,salary from employee_info where salary<=25000;
+46..Write a query to display,name,designation,mobile no whose salary >=25000?
+select name,designation,Mobileno,age,salary from employee_info where salary>=25000;
+47.Write a query to display all the records who is working in dept no 20 only if salaray>20000?
+ select * from employee_info where Deptid=30 and salary>20000 ;
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name       | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  3 | Laxmi  M H | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  6 | Chetan B C | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+| 11 | Deepa S H  | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+48.Write a query to display all the records of who is working as salesman and date of birth is 1998?
+
+49.write a query to display all records whose salary=15000 and designation is analyst?
+select * from employee_info where salary=15000 and designation='analyst';
+
+       OR Operator
+Syntax: select * from table_name where column_name=value OR columnname=value
+
+50.Write a query to display all the records who is working deptid 20 or deptid=60?
+ select * from employee_info where Deptid=20 or Deptid=60;
+
+51.Write a query to display name salary email id, who is working as a tester or is age is > 25?
+select name,emailid,salary from employee_info where age>25 or designation='tester';
+
+52.Write a query to display name of all employee who is working as a HR in dept no=10 or who is working as clerk whose salary=10000?//using both OR and AND operator and AND will 1st execute
+     select name from employee_info where designation='HR' and Deptid=10 or designation='clerk'and salary>10000;
+
+53.Write a query to display salary=10000 and designation=software Developer ?
+ select salary,designation from employee_info  where salary=30000 and designation='softwareDeveloper';
+
+   NOT operator 
+SYNTAX
+select name from employee_info where not columnname=value;
+
+54.Write a query to display all records of employee_info except softwaredeveloper?
+select * from employee_info where not designation='softwaredeveloper';
+
+55.Write a query to display all records of employee_info except deptid=20 or deptid=30?
+ select * from employee_info where not ( deptid=20 or deptid=30);
+select * from employee_info where( deptid<>20 and deptid<>30);
+select * from employee_info where( deptid!=20 and deptid!=30);
+
+IF NOT OR AND will use at the same time then 1st NOT and 2nd AND and 3rd OR
+
+56.Write a query to display all records of employee_info except salesman who all are working deptid=40?
+mysql> select * from employee_info where not designation='salesman' and deptid=40;
+Empty set (0.00 sec)
+select * from employee_info where not( designation='salesman' and deptid=40);
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi   | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram    | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+|  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+|  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+|  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 12 | Shivaji     | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+| 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+13 rows in set (0.00 sec)
+
+57.Write a query to display who is working as clerk for deptno=20 or 30?
+mysql> select * from employee_info where designation='clerk' and (deptid=20 or deptid=30);
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name     | emailid            | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram | shreeram@gmail.com | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji  | shivaji@gmail.com  | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+2 rows in set (0.00 sec)
+ 
+58.Write a query to display all the employee working in deptno=20 only if thier salary is >10000 and <25000 including 10000 and 25000?
+ select * from employee_info where deptid=20 and (salary>=10000 and salary<=25000);
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name     | emailid            | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram | shreeram@gmail.com | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji  | shivaji@gmail.com  | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+
+59.wtite a query to display all the record who is working as a software doveloper and dob is 1998?
+ select * from employee_info where designation='softwaredeveloper' and (DOB>'98-01-01' and DOB<'98-12-31'); 
++----+------------+-----------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name       | emailid         | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+------------+-----------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  3 | Laxmi  M H | laxmi@gmail.com | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
++----+------------+-----------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+ 
+
+60.write a query to display employee who is working in dptno:10 or 20 or 30
+select * from employee_info where Deptid=10 or Deptid=20 or Deptid=30;
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name       | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi  | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram   | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+|  3 | Laxmi  M H | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree   | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  6 | Chetan B C | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+|  7 | Chaitanya  | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  9 | Kasturi    | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti     | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 11 | Deepa S H  | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 12 | Shivaji    | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 13 | Manjula    | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+11 rows in set (0.00 sec)
+for perticular column 3 conditions are writing ro overcome this we use specialoperator
+  BY USING SPECIAL OPERATOR
+ select * from employee_info where Deptid IN(10,20,30);
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name       | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi  | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram   | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+|  3 | Laxmi  M H | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree   | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  6 | Chetan B C | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+|  7 | Chaitanya  | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  9 | Kasturi    | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti     | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 11 | Deepa S H  | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 12 | Shivaji    | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 13 | Manjula    | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+11 rows in set (0.00 sec)
+
+60.Write a query to display all the employee details whose job designation is hr,tester,analyst?
+ select * from employee_info where designation IN('HR','TESTER','ANALYST');
+ 
+61.write a query to display all the employee details who are working as a clerk in department in 20,30,40,60,70?
+select * from employee_info where designation='clerk'and  Deptid in(20,30,40,50,60,70);
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name     | emailid            | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram | shreeram@gmail.com | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji  | shivaji@gmail.com  | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
++----+----------+--------------------+-------------+------------+------
+NOTIN operator is multivalue operator it exclude the given condition
+
+61.write query to exclude multiplevalues?
+ select * from employee_info where   Deptid  not in(20,30,40,50,60);
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid             | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi | shreedevi@gmail.com | HR          | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  4 | Jyashree  | jaya@gmail.com      | HR          | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  7 | Chaitanya | Chaitanya@gmail.com | HR          | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  9 | Kasturi   | Kasturi@gmail.com   | HR          | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti    | Maruti@gmail.com    | HR          | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 13 | Manjula   | manjula@gmail.com   | HR          | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+6 rows in set (0.00 sec)
+62.write a query 20,40,60 excluding the sales man or analyst?
+ select * from employee_info where deptid in(20,40,60) and  designation not in('salesman','analyst');
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid             | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram  | shreeram@gmail.com  | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji   | shivaji@gmail.com   | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 15 | Vaishnavi | vaishnavi@gmail.com | tester      | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+BETWEEN operator //syntax: slect * from table_name where column_name Between lowerlimit and upperlimit
+we want range in between range we use this
+
+63.write a query to display all the deatil of employee whose salary is in the range of 20000 to 50000?
+select * from employee_info where salary between 20000 and 50000;
+for DOB
+select * from employee_info where DOB between '96-01-01' and '98-01-01';
+
+64.write a query to dispaly all the details of the employee who hired or dateofjoining in 2019?
+ select * from employee_info where DOj between '2019-01-01' and '2019-12-31';
+
+by excluding 2019 hired employee
+
+
+  65.write a query all the records of employee excluding who is hierd in 2019?
+  select * from employee_info where Doj not between '19-01-01' and '19-12-31';
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name   | emailid          | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| 14 | Saroja | saroja@gmail.com | Salesman    | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+66.write a query to check the data of 2 years?
+select * from employee_info where Doj  between '19-01-01' and '20-12-31';
+
+67.Write a query to display employee name,salary and dept id of all employees who is working in dept no 10 or 20 excluding employee whose salary >=15000and salary<=50000?
+ select name,salary,deptid from employee_info where deptid in(10,20) and salary not between 15000 and 50000;
++-----------+--------+--------+
+| name      | salary | deptid |
++-----------+--------+--------+
+| Chaitanya |  60000 |     10 |
++-----------+--------+--------+
+1 row in set (0.00 sec)
+    IS OPERATOR is use to check the null value if any record is null then it will give true if record is not null then it give false
+68.write a query to dispaly employee name and annualsalary if emailis null?
+select name,salary from employee_info where emailid is null;
++--------+--------+
+| name   | salary |
++--------+--------+
+| savita |   NULL |
++--------+--------+
+1 row in set (0.00 sec)
+
+69.to get apart null data?
+mysql> select name,salary from employee_info where emailid is not  null;
++-------------+--------+
+| name        | salary |
++-------------+--------+
+| Shreedevi   |  50000 |
+| Shreeram    |  25000 |
+| Laxmi  M H  |  29000 |
+| Jyashree    |  27250 |
+| Lohith      |  27000 |
+| Chetan B C  |  30000 |
+| Chaitanya   |  60000 |
+| Nataraj D N |  15000 |
+| Kasturi     |  50000 |
+| Maruti      |  50000 |
+| Deepa S H   |  51000 |
+| Shivaji     |  17000 |
+| Manjula     |  30000 |
+| Saroja      |  30000 |
+| Vaishnavi   |  50000 |
++-------------+--------+
+15 rows in set (0.00 sec)
+LIKE operator
+SYNTAX:select * from table_name where columnname like 'patternname'; pattername is case sensitive 
+select * from table_name where columnname like '%/_';
+
+70.Write a query to display all detail whose name is starts with s?
+
+select * from employee_info where name like 's%';
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid             | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi | shreedevi@gmail.com | HR          | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram  | shreeram@gmail.com  | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji   | shivaji@gmail.com   | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 14 | Saroja    | saroja@gmail.com    | Salesman    | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+| 16 | savita    | NULL                | HR          |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+5 rows in set (0.00 sec)
+ 71.Write a query to display of employee whose name contain only 6 character?
+select * from employee_info where name like '______';  //'6underscore'
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name   | emailid          | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  5 | Lohith | lohith@gmail.com | salesman    | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+| 10 | Maruti | Maruti@gmail.com | HR          | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 14 | Saroja | saroja@gmail.com | Salesman    | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+| 16 | savita | NULL             | HR          |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
++----+--------+------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+72..Write a query to display name salary dob doj age whose names starts with s and end with i?
+select * from employee_info where name like 's%i';
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid             | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi | shreedevi@gmail.com | HR          | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+| 12 | Shivaji   | shivaji@gmail.com   | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+2 rows in set (0.00 sec)
+
+73.write a query to display all the records of the employee whose 2nd char is e?
+ select * from employee_info where name like '_e%';
++----+-----------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| 11 | Deepa S H | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
++----+-----------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+74.write a query to display all the info of employee where designation have atlest 2 e's?
+select * from employee_info where designation like '%e%e%';
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name       | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  3 | Laxmi  M H | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  6 | Chetan B C | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+| 11 | Deepa S H  | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 15 | Vaishnavi  | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
++----+------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+
+75.write a query to display all the string of length 5 the name starts with s and 2nd last chasacter of is a?
+select * from employee_info where name like 's_____a_';
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name     | emailid            | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram | shreeram@gmail.com | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+76.write a query to display all deatils of employee if the name of employee starts with l or start with z?
+select * from employee_info where name like 's%' or 'z%';
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name      | emailid             | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi | shreedevi@gmail.com | HR          | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram  | shreeram@gmail.com  | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji   | shivaji@gmail.com   | Clerk       | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 14 | Saroja    | saroja@gmail.com    | Salesman    | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+| 16 | savita    | NULL                | HR          |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
++----+-----------+---------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql>
+
+77.Write a query to display employee details in the name the 3rd char should be c and 6th char shoud be i?
+
+select * from employee_info where name like '__c___i%';
+ select * from employee_info where name like '__r__r%';
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+| id | name     | emailid            | designation | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+|  2 | Shreeram | shreeram@gmail.com | Clerk       | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
++----+----------+--------------------+-------------+------------+------+------------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql>> +----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+    -> | id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
+    -> +----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+    -> |  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+    -> |  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+    -> |  5 | Lohith      | lohith@gmail.com     | salesman          | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+    -> |  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+    -> |  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+    -> |  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+    -> |  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+    -> | 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+    -> | 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+    -> | 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+    -> | 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
+    -> +----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+    -> 11 rows in set (0.00 sec)7
+
+NOTLIKE syntax:select * from tablname where col_name  not like '%/_';
+it is used to select all the string exculding the given string
+
+78.write query to get all details excluding whose name starts with s?
+select * from employee_info where name not like 's%';
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  5 | Lohith      | lohith@gmail.com     | salesman          | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+|  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+|  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+|  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+| 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+11 rows in set (0.00 sec)
+
+FUNCTIONS:- it a block of code which perform some task
+function has 3 attribute 1.function name 2.input argument 3.return type
+
+there are 2 predefined fun are thr 1.scalarfun:-single row fun
+2.aggregatefun:-multi row fun
+AGGREGATE fun:-many i/p single o/p
+
+79.write a query to display the average salary of employee _info?
+select avg(salary) from employee_info;
++--------------------+
+| avg(salary)        |
++--------------------+
+| 36083.333333333336 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql>
+with aliasing
+ select avg(salary) as salary from employee_info;
++--------------------+
+| salary             |
++--------------------+
+| 36083.333333333336 |
++--------------------+
+80.write a query to display min salary,max salr, sum salry?
+select min(salary) salary, max(salary) salary, sum(salary) as salary from employee_info;
++--------+--------+--------+
+| salary | salary | salary |
++--------+--------+--------+
+|  15000 |  60000 | 541250 |
+
+  to get all details in one line. 
+> select min(salary) min_salary, max(salary) max_salary, sum(salary) as sum_salary,avg(salary) avg_salary,count(salary) count_salary from employee_info;
++------------+------------+------------+--------------------+--------------+
+| min_salary | max_salary | sum_salary | avg_salary         | count_salary |
++------------+------------+------------+--------------------+--------------+
+|      15000 |      60000 |     541250 | 36083.333333333336 |           15 |
++------------+------------+------------+--------------------+--------------+
+1 row in set (0.00 sec)
+for count
+ select count(salary) as salary from employee_info;
++--------+
+| salary |
++--------+
+|     15 |
++--------+
+1 row in set (0.00 sec)
+SCALAR FUNCTION: single i/p corresponding single o/p;
+81. Write a query to dispaly no of employee hierd doj after joing 2016?
+
+
+select count(*) from employee_info where doj>'2016-12-31'; //after 2016 it take if we want from 2016 then 2016-01-01
++----------+
+| count(*) |
++----------+
+|       15 |
++----------+
+1 row in set (0.00 sec)
+
+82.write a query to display avg sal and highest salary of department 20,30,40,60?
+ select avg(salary),max(salary) from employee_info where deptid in(20,30,40,60);
++-------------+-------------+
+| avg(salary) | max(salary) |
++-------------+-------------+
+|       32375 |       51000 |
++-------------+-------------+
+1 row in set (0.06 sec)
+
+83.Write a query to  dispaly date of first and last hierd employee?
+ select min(doj) first_date,max(doj) last_date from employee_info ;
++------------+------------+
+| first_date | last_date  |
++------------+------------+
+| 2019-08-13 | 2020-01-18 |
++------------+------------+
+1 row in set (0.00 sec)
+
+84.Write a query to  convert name in to uppercase?
+ select upper(name) from employee_info;
++-------------+
+| upper(name) |
++-------------+
+| SHREEDEVI   |
+| SHREERAM    |
+| LAXMI  M H  |
+| JYASHREE    |
+| LOHITH      |
+| CHETAN B C  |
+| CHAITANYA   |
+| NATARAJ D N |
+| KASTURI     |
+| MARUTI      |
+| DEEPA S H   |
+| SHIVAJI     |
+| MANJULA     |
+| SAROJA      |
+| VAISHNAVI   |
+| SAVITA      |
++-------------+
+
+85.write a qury to convert name in lowercase?
+
+mysql> select lower(name) from employee_info;
++-------------+
+| lower(name) |
++-------------+
+| shreedevi   |
+| shreeram    |
+| laxmi  m h  |
+| jyashree    |
+| lohith      |
+| chetan b c  |
+| chaitanya   |
+| nataraj d n |
+| kasturi     |
+| maruti      |
+| deepa s h   |
+| shivaji     |
+| manjula     |
+| saroja      |
+| vaishnavi   |
+| savita      |
+
+86.Write a query to convert name in init case?
+select init(name) from employee_info;
+ERROR 1305 (42000): FUNCTION ust.init does not exist
+
+INITcap() not support in mysql but supported in oracle.
+
+87.waq to check length of name?
+ select length(name) length_name from employee_info;
++-------------+
+| length_name |
++-------------+
+|           9 |
+|           8 |
+|          10 |
+|           8 |
+|           6 |
+|          10 |
+|           9 |
+|          11 |
+|           7 |
+|           6 |
+|           9 |
+|           7 |
+|           7 |
+|           6 |
+|           9 |
+|           6 |
++-------------+
+16 rows in set (0.00 sec)
+
+88.waq to concat salary and name?
+select concat(name,salary) from employee_info;
++---------------------+
+| concat(name,salary) |
++---------------------+
+| Shreedevi50000     
+| Shreeram25000       |
+| Laxmi  M H29000     |
+| Jyashree27250       |
+| Lohith27000         |
+| Chetan B C30000     |
+| Chaitanya60000      |
+| Nataraj D N15000    |
+| Kasturi50000        |
+| Maruti50000         |
+| Deepa S H51000      |
+| Shivaji17000        |
+| Manjula30000        |
+| Saroja30000         |
+| Vaishnavi50000      |
+| NULL                |
++---------------------+
+
+89.waq to reverse the name?
+select reverse(name) from employee_info;
++---------------+
+| reverse(name) |
++---------------+
+| ivedeerhS     |
+| mareerhS      |
+| H M  imxaL    |
+| eerhsayJ      |
+| htihoL        |
+| C B natehC    |
+| aynatiahC     |
+| N D jarataN   |
+| irutsaK       |
+| ituraM        |
+| H S apeeD     |
+| ijavihS       |
+| alujnaM       |
+| ajoraS        |
+| ivanhsiaV     |
+| ativas        |
++---------------+
+
+90.waq to dispaly the name of all employee only 3 character?
+ select substr(name,1,3) name from employee_info;
++------+
+| name |
++------+
+| Shr  |
+| Shr  |
+| Lax  |
+| Jya  |
+| Loh  |
+| Che  |
+| Cha  |
+| Nat  |
+| Kas  |
+| Mar  |
+| Dee  |
+| Shi  |
+| Man  |
+| Sar  |
+| Vai  |
+| sav  |
+
+
+91. waq to dispaly all the name of employee whose name begins with consonats?
+ select * from employee_info where substr(name,1,1) not in('a','e','i','o','u');
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  1 | Shreedevi   | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  2 | Shreeram    | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+|  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  5 | Lohith      | lohith@gmail.com     | salesman          | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+|  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+|  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+|  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+|  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+| 12 | Shivaji     | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+| 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+| 14 | Saroja      | saroja@gmail.com     | Salesman          | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+| 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
+| 16 | savita      | NULL                 | HR                |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
+
++----+-------------+---------------------
+ 
+
+92.waq to dispaly to search the position of A in the name column?
+select instr(name,'a') from employee_info;
++-----------------+
+| instr(name,'a') |
++-----------------+
+|               0 |
+|               7 |
+|               2 |
+|               3 |
+|               0 |
+|               5 |
+|               3 |
+|               2 |
+|               2 |
+|               2 |
+|               5 |
+|               5 |
+|               2 |
+|               2 |
+|               2 |
+|               2 |
++-----------------+
+
+93.Write query to replace a from e in the name?
+select replace(name,'a','e') from employee_info;
++-----------------------+
+| replace(name,'a','e') |
++-----------------------+
+| Shreedevi             |
+| Shreerem              |
+| Lexmi  M H            |
+| Jyeshree              |
+| Lohith                |
+| Cheten B C            |
+| Cheitenye             |
+| Neterej D N           |
+| Kesturi               |
+| Meruti                |
+| Deepe S H             |
+| Shiveji               |
+| Menjule               |
+| Seroje                |
+| Veishnevi             |
+| sevite                |
++-----------------------+
+
+94.Write a query to replace  where a is present in the name with z?
+select replace(name,'a','z') from employee_info;
++-----------------------+
+| replace(name,'a','z') |
++-----------------------+
+| Shreedevi             |
+| Shreerzm              |
+| Lzxmi  M H            |
+| Jyzshree              |
+| Lohith                |
+| Chetzn B C            |
+| Chzitznyz             |
+| Nztzrzj D N           |
+| Kzsturi               |
+| Mzruti                |
+| Deepz S H             |
+| Shivzji               |
+| Mznjulz               |
+| Szrojz                |
+| Vzishnzvi             |
+| szvitz                |
++-----------------------+
+
+95.Write a query to dispaly no of employee who is working and dept=20 and salary =25000?
+ select count(*) from employee_info where deptid=20 and salary=25000;
++----------+
+| count(*) |
++----------+
+|        1 |
+
+select name, count(*) from employee_info where deptid=20 and salary=25000;
++----------+----------+
+| name     | count(*) |
++----------+----------+
+| Shreeram |        1 |
++----------+----------+
+1 row in set (0.01 sec)
+
+96.Write a query to display both small and capital s to z?
+select replace(replace(name,'s','z'),'S','z') from employee_info;
++----------------------------------------+
+| replace(replace(name,'s','z'),'S','z') |
++----------------------------------------+
+| zhreedevi                              |
+| zhreeram                               |
+| Laxmi  M H                             |
+| Jyazhree                               |
+| Lohith                                 |
+| Chetan B C                             |
+| Chaitanya                              |
+| Nataraj D N                            |
+| Kazturi                                |
+| Maruti                                 |
+| Deepa z H                              |
+| zhivaji                                |
+| Manjula                                |
+| zaroja                                 |
+| Vaizhnavi                              |
+| zavita                                 |
++----------------------------------------+
+16 rows in set (0.00 sec)
+
+97.how to group the employees based on deptid?
+select deptid, count(*) from employee_info group by deptid;
++--------+----------+
+| deptid | count(*) |
++--------+----------+
+|   NULL |        1 |
+|     10 |        6 |
+|     20 |        2 |
+|     30 |        3 |
+|     40 |        2 |
+|     50 |        1 |
+|     60 |        1 |
++--------+----------+
+
+98.Write a query to dispaly highest salary in each department?
+select deptid, max(salary) salary from employee_info group by deptid; flow of execution: from ,group by,max,select 
++--------+--------+
+| deptid | salary |
++--------+--------+4
+|   NULL |   NULL |
+|     10 |  60000 |
+|     20 |  25000 |
+|     30 |  51000 |
+|     40 |  30000 |
+|     50 |  15000 |
+|     60 |  50000 |
++--------+--------+
+
+99.write a query to dispaly no of software developer working in each department?
+select designation, count(*) from employee_info where designation='softwaredeveloper' group by deptid;
++-------------------+----------+
+| designation       | count(*) |
++-------------------+----------+
+| SoftwareDeveloper |        3 |
++-------------------+----------+
+
+100.Write a query to  dispaly no of employee hierd on each date?
+ select doj, count(*) from employee_info group by doj;
++------------+----------+
+| doj        | count(*) |
++------------+----------+
+| NULL       |        1 |
+| 2019-08-13 |        1 |
+| 2019-08-17 |        1 |
+| 2019-08-19 |        2 |
+| 2019-08-21 |        2 |
+| 2019-08-27 |        1 |
+| 2019-09-21 |        2 |
+| 2019-09-22 |        1 |
+| 2019-09-28 |        1 |
+| 2019-09-30 |        1 |
+| 2019-10-01 |        1 |
+| 2019-10-17 |        1 |
+| 2020-01-18 |        1 |
+
+101.Write a query to dispaly minimum salary in each designation?
+ select designation, min(salary)  salary from employee_info group by designation;
++-------------------+--------+
+| designation       | salary |
++-------------------+--------+
+| Analyst           |  15000 |
+| Clerk             |  17000 |
+| HR                |  27250 |
+| salesman          |  27000 |
+| SoftwareDeveloper |  29000 |
+| tester            |  50000 |
++-------------------+--------
+
+102.Write a query to dispaly deptno which has working atlest 4 working employees?
+ select deptid from employee_info group by deptid having count(*)>4;
++--------+
+| deptid |
++--------+
+|     10 |
++--------+
+1 row in set (0.00 sec)
+
+103.Write a query to dispaly  deptid which has total salry >25000?
+  select deptid from employee_info group by deptid  having sum( salary)>25000;
++--------+
+| deptid |
++--------+
+|     10 |
+|     20 |
+|     30 |
+|     40 |
+|     60 |
++--------
+
+104.write a deptid and avg salaray of all the department whose average salaray>20000 exluding the employee whose name begins with s?
+select salary, name, deptid,avg(salary)  from employee_info where name not like 's%' group by deptid having avg(salary)>25000;
++--------+------------+--------+--------------------+
+| salary | name       | deptid | avg(salary)        |
++--------+------------+--------+--------------------+
+|  27250 | Jyashree   |     10 |              43450 |
+|  29000 | Laxmi  M H |     30 | 36666.666666666664 |
+|  27000 | Lohith     |     40 |              27000 |
+|  50000 | Vaishnavi  |     60 |              50000 |
++--------+------------+--------+--------------------+
+4 rows in set (0.00 sec)
+105.Write a query group by deptid and designation?
+select deptid,sum(salary),name from employee_info group by  deptid having sum(salary)>25000;
++--------+-------------+------------+
+| deptid | sum(salary) | name       |
++--------+-------------+------------+
+|     10 |      267250 | Shreedevi  |
+|     20 |       42000 | Shreeram   |
+|     30 |      110000 | Laxmi  M H |
+|     40 |       57000 | Lohith     |
+|     60 |       50000 | Vaishnavi  |
++--------+-------------+------------+
+5 rows in set (0.00 sec)
+
+106.write a query to dispaly all results salary should be arrange in descending order?
+select * from employee_info order by salary desc;
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+|  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
+| 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+|  1 | Shreedevi   | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
+|  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+| 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+| 14 | Saroja      | saroja@gmail.com     | Salesman          | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+|  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  5 | Lohith      | lohith@gmail.com     | salesman          | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+|  2 | Shreeram    | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+| 12 | Shivaji     | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+|  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+| 16 | savita      | NULL                 | HR                |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+16 rows in set (0.05 sec)
+
+107.in assending order?
+select * from employee_info order by salary ;
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| id | name        | emailid              | designation       | Mobileno   | age  | DOB        | DOJ        | salary | Deptid | Bloodgroup |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+| 16 | savita      | NULL                 | HR                |       NULL | NULL | 1995-01-10 | NULL       |   NULL |   NULL | NULL       |
+|  8 | Nataraj D N | Nataraj@gmail.com    | Analyst           | 9742086629 |   24 | 1995-07-03 | 2019-10-01 |  15000 |     50 | A-ve       |
+| 12 | Shivaji     | shivaji@gmail.com    | Clerk             | 9902864311 |   21 | 1998-10-12 | 2019-08-21 |  17000 |     20 | O+ve       |
+|  2 | Shreeram    | shreeram@gmail.com   | Clerk             | 9742156298 |   23 | 1996-02-15 | 2019-08-19 |  25000 |     20 | A+ve       |
+|  5 | Lohith      | lohith@gmail.com     | salesman          | 9975625874 |   23 | 1996-07-02 | 2019-08-21 |  27000 |     40 | AB+ve      |
+|  4 | Jyashree    | jaya@gmail.com       | HR                | 8957422545 |   23 | 1996-05-01 | 2019-08-17 |  27250 |     10 | O+ve       |
+|  3 | Laxmi  M H  | laxmi@gmail.com      | SoftwareDeveloper | 8867398345 |   22 | 1998-01-10 | 2019-09-28 |  29000 |     30 | B+ve       |
+|  6 | Chetan B C  | Chetan@gmail.com     | softwareDeveloper | 8752172561 |   24 | 1995-05-03 | 2019-08-27 |  30000 |     30 | A+ve       |
+| 13 | Manjula     | manjula@gmail.com    | HR                | 9952365811 |   24 | 1995-09-11 | 2019-08-19 |  30000 |     10 | B+ve       |
+| 14 | Saroja      | saroja@gmail.com     | Salesman          | 9952378523 |   24 | 1995-08-11 | 2020-01-18 |  30000 |     40 | A+ve       |
+|  1 | Shreedevi   | shreedevi@gmail.com  | HR                | 9902117101 |   22 | 1997-01-10 | 2019-08-13 |  50000 |     10 | B+ve       |
+|  9 | Kasturi     | Kasturi@gmail.com    | HR                | 9925436987 |   23 | 1996-04-01 | 2019-09-21 |  50000 |     10 | A+ve       |
+| 10 | Maruti      | Maruti@gmail.com     | HR                | 8762145634 |   23 | 1996-04-02 | 2019-09-21 |  50000 |     10 | O+ve       |
+| 15 | Vaishnavi   | vaishnavi@gmail.com  | tester            | 9963252101 |   23 | 1996-08-11 | 2019-10-17 |  50000 |     60 | B+ve       |
+| 11 | Deepa S H   | deepadeeps@gmail.com | SoftwareDeveloper | 8762125368 |   22 | 1997-11-11 | 2019-09-22 |  51000 |     30 | B+ve       |
+|  7 | Chaitanya   | Chaitanya@gmail.com  | HR                | 8752152369 |   25 | 1994-07-04 | 2019-09-30 |  60000 |     10 | B-ve       |
++----+-------------+----------------------+-------------------+------------+------+------------+------------+--------+--------+------------+
+
+108.Write a query to display employee naem,doj,designation for all employee who are working in either any one of the dept10,20,60,40 and sort the records in descending
+order of salary
+ select name,designation,doj,salary,deptid from employee_info where deptid in(10,20,60,40) order by salary desc;
++-----------+-------------+------------+--------+--------+
+| name      | designation | doj        | salary | deptid |
++-----------+-------------+------------+--------+--------+
+| Chaitanya | HR          | 2019-09-30 |  60000 |     10 |
+| Shreedevi | HR          | 2019-08-13 |  50000 |     10 |
+| Kasturi   | HR          | 2019-09-21 |  50000 |     10 |
+| Maruti    | HR          | 2019-09-21 |  50000 |     10 |
+| Vaishnavi | tester      | 2019-10-17 |  50000 |     60 |
+| Manjula   | HR          | 2019-08-19 |  30000 |     10 |
+| Saroja    | Salesman    | 2020-01-18 |  30000 |     40 |
+| Jyashree  | HR          | 2019-08-17 |  27250 |     10 |
+| Lohith    | salesman    | 2019-08-21 |  27000 |     40 |
+| Shreeram  | Clerk       | 2019-08-19 |  25000 |     20 |
+| Shivaji   | Clerk       | 2019-08-21 |  17000 |     20 |
++-----------+-------------+------------+--------+--------+
+
+109.Write a query to display deptid along with no of emplyee in it?
+select deptid,count(* )from employee_info group by deptid;
++--------+-----------+
+| deptid | count(* ) |
++--------+-----------+
+|   NULL |         1 |
+|     10 |         6 |
+|     20 |         2 |
+|     30 |         3 |
+|     40 |         2 |
+|     50 |         1 |
+|     60 |         1 |
+
+110.Write a query to dispaly all the detail   whose designation is tester and softwareDeveloper?
+
+
+111.Write a query to display name of employee who is working for research department?
+select name from employee_info where deptid=(select deptid from department_info where dname='research')
+
+112.Write a query to dispaly name of the employee who is working in location which have atleast 1 a character in its name?
+select name from employee_info where deptid in(select deptid from department_info where location like '%m%')
+
+113.write a query to obtain 2nd max salary from employee_info table?
+select max(salary) from employee_info where salary < (select max(salary) salary from employee_info)
+  or 
+  select max(salary) from employee_info where salary not in (select max(salary) salary from employee_info)
+114.write a query to display 3rd max salary?
+select max(salary) from employee_info where salary < (select max(salary) salary from employee_info  where salary <(select max(salary) salary from employee_info))
+
+115.Write a query to dispaly all the records using cartesion join?
+SELECT * from employee_info cross join department_info
+
+Inner Join:
+to join data
+select * from employee_info inner join department_info on employee_info.deptid=department_info.deptid;
+ set autocommit=0;
+ insert into department_info values(90,'zoology','bengalore');
+  select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | zoology     | bengalore |
++--------+-------------+-----------+
+mysql> rollback;
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
++--------+-------------+-----------+
+
+
+mysql> commit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | botony      | bengalore |
++--------+-------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | botony      | bengalore |
++--------+-------------+-----------+
+8 rows in set (0.00 sec)
+
+
+
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into department_info values(92,'zoology','bengalore');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | botony      | bengalore |
+|     91 | zoology     | bengalore |
+|     92 | zoology     | bengalore |
++--------+-------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> savepoint b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from department_info where deptid=40;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | botony      | bengalore |
+|     91 | zoology     | bengalore |
+|     92 | zoology     | bengalore |
++--------+-------------+-----------+
+9 rows in set (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from department_info;
++--------+-------------+-----------+
+| deptid | dname       | location  |
++--------+-------------+-----------+
+|     10 | accounting  | bangelore |
+|     20 | research    | pune      |
+|     30 | sales       | delhi     |
+|     40 | operation   | chenai    |
+|     50 | admin       | mumbai    |
+|     70 | maintanance | goa       |
+|     80 | zoology     | bengalore |
+|     90 | botony      | bengalore |
+|     91 | zoology     | bengalore |
++--------+-------------+-----------+
+9 rows in set (0.00 sec)
+
+stored procedure
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `ust`.`emp`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `emp`()
+BEGIN
+SELECT * from employee_info where deptid=10;
+    END$$
+
+DELIMITER ;
+
+to call that
+call emp;
