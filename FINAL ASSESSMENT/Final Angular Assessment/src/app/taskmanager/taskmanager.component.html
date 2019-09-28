@@ -1,0 +1,45 @@
+<!-- <p>taskmanager works!</p> -->
+
+<div class="container" class="col-md-4 offset-md-4 mt-5 card card-body">
+    <form action="" #form='ngForm' (ngSubmit)='form' > 
+        <div class="form-group">
+          <input type="text" class="form-control" name="add" #add='ngModel' 
+          ngModel    placeholder="Add task">
+          
+        </div>
+        <div class="btn-group float-right">
+   <button class="btn btn-outline-primary " (click)='send(add)'>
+AddTask
+   </button>
+        </div>
+    </form>
+
+</div>
+<!-- <app-taskmanager1 [data]='added' ></app-taskmanager1> -->
+<div  class="container">
+        <table class="table table-bordered table-hover mt-4">
+            <thead class="thead-dark">
+                <tr>
+                       
+                        <th>Task</th>
+                        <th>Delete</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr *ngFor='let user of added'>
+                     <td>{{user}}</td>
+                     <td>
+                         <button class="btn btn-outline-danger" (click)='delete(data)'>
+                         delete
+                         </button>
+                     </td>
+                    </tr>
+                
+                </tbody>
+            
+           
+        </table>
+        
+        </div>
+        <!-- <h1>{{data}}</h1> -->
+        

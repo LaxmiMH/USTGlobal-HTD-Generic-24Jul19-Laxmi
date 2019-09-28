@@ -1,0 +1,32 @@
+<!-- <p>users works!</p> -->
+<h3 style="text-align: center">table data of users</h3>
+<table class="table table-bordered table-hover mt-5" >
+    
+    <thead class="thead-dark">
+            <tr >
+                   <th>Index</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Website</th>
+                    <th class="text-center">Address</th>
+                    
+                </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let user of users; index as i'>
+            <td>{{i+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.website}}</td>
+                <td class="col md-3 text-center">{{user.address.street}}<br>
+                                                {{user.address.suite}}<br>
+                                            {{user.address.city}}<br>
+                                          {{user.address.zipcode}}</td>
+               
+        </tr>
+    </tbody>
+  
+
+</table>
